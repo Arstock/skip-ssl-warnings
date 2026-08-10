@@ -1,8 +1,9 @@
 {
     "manifest_version": 3,
-    "name": "Skip SSL Warnings",
-    "version": "0.10.0",
-    "description": "Omite advertencias de certificados SSL vencidos para continuar navegando.",
+    "name": "__MSG_extension_name__",
+    "version": "0.1.0",
+    "description": "__MSG_extension_description__",
+    "default_locale": "es",
     "icons": {
         "128": "icon/icon128.png"
     },
@@ -22,7 +23,7 @@
             "enabled": true,
             "path": "rules.json"
         }]
-    },  // ← Coma agregada
+    }
     "background": {
         "service_worker": "background.js"
     },
@@ -35,7 +36,7 @@
     "web_accessible_resources": [{
         "resources": ["content_script.js"],
         "matches": ["*://*/*"]
-    }],  // ← Coma agregada
+    }]
     "options_ui": {
         "page": "options/index.html",
         "open_in_tab": false
