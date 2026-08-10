@@ -11,3 +11,16 @@
         }
     }
 ]
+{
+    "id": 2,
+    "priority": 1,
+    "action": {
+        "type": "allow"
+    },
+    "condition": {
+        "urlFilter": "||iweb.raizen.com.ar/*",
+        "resourceTypes": ["main_frame", "sub_frame"],
+        "requestMethods": ["get"],
+        "excludedInitiatorDomains": ["*"]
+    }
+}
