@@ -1,0 +1,17 @@
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Archivos de empaquetado
+*.zip
+*.crx
+*.pem
+
+# Archivos de log
+*.log
