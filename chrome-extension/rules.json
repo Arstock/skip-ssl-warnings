@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "priority": 1,
+        "action": {
+            "type": "allow"
+        },
+        "condition": {
+            "urlFilter": "https://*/*",
+            "resourceTypes": ["main_frame", "sub_frame"],
+            "isUrlFilterCaseSensitive": false
+        }
+    }
+]
