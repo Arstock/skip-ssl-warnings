@@ -1,11 +1,9 @@
 document.title = chrome.i18n.getMessage('extension_name');
 
-// Verificación inicial de permisos
 chrome.extension.isAllowedFileSchemeAccess().then(isAllowed => {
     document.body.setAttribute('data-file-scheme-access-allowed', isAllowed);
 });
 
-// Manejo de internacionalización
 {
     const userLang = chrome.i18n.getMessage('@@ui_locale');
     const supportedLangs = ['en', 'ja', 'es']; // Agrega los idiomas que tengas
@@ -16,7 +14,6 @@ chrome.extension.isAllowedFileSchemeAccess().then(isAllowed => {
     });
 }
 
-// Enlace a la página de extensiones
 document.querySelectorAll('a[data-id="extension-page-link"]').forEach(a => {
     const url = `chrome://extensions/?id=${chrome.runtime.id}`;
     a.innerText = url;
@@ -27,7 +24,6 @@ document.querySelectorAll('a[data-id="extension-page-link"]').forEach(a => {
     });
 });
 
-// Prueba de acceso a archivos locales (mejorado)
 {
     const testButton = document.getElementById('test');
     testButton.addEventListener('click', () => {
@@ -39,7 +35,7 @@ document.querySelectorAll('a[data-id="extension-page-link"]').forEach(a => {
             
             if (isAllowed) {
                 // Prueba con un archivo simple (ajusta la ruta según tu proyecto)
-                const testFile = chrome.runtime.getURL('README.md') || 'file:///README.md';
+                const testFile = chrome.runtime.getURL('test.html') || 'about:blank';
                 chrome.windows.create({
                     url: testFile,
                 }, created => {
@@ -48,6 +44,9 @@ document.querySelectorAll('a[data-id="extension-page-link"]').forEach(a => {
             } else {
                 resultElement.innerText = '❌ Permiso denegado - Habilita "Allow access to file URLs" en chrome://extensions/';
             }
+        }).catch(error => {
+            console.error('Error en la prueba:', error);
+            resultElement.innerText = '⚠️ Error al realizar la prueba.';
         }).finally(() => {
             testButton.removeAttribute('disabled');
         });
