@@ -1,4 +1,5 @@
-if (!window.alreadyExecuted) window.addEventListener('click', evt => {
+if (!window.__SKIP_SSL_WARNINGS_INSTALLED__) {
+    window.addEventListener('click', evt => {
 	let target = evt.composedPath()[0];
 	while (target && target.tagName.toLowerCase() !== 'a' && target.tagName.toLowerCase() !== 'area') {
 		target = target.parentElement;
@@ -15,8 +16,6 @@ if (!window.alreadyExecuted) window.addEventListener('click', evt => {
 			} catch (e) {}
 		}
 	}
-}, {
-	capture: true,
-});
-
-window.alreadyExecuted = true;
+    }, { capture: true });
+    window.__SKIP_SSL_WARNINGS_INSTALLED__ = true;
+}
