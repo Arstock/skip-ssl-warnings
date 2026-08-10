@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<style>
+		body {
+			max-width: 800px;
+			margin: 0 auto;
+		}
+		[lang] {
+			display: none;
+		}
+		:target {
+			background-color: pink;
+			border-radius: 0.25rem;
+		}
+		details {
+			background-color: lightcyan;
+		}
+		button:not([disabled]),
+		summary {
+			cursor: pointer;
+		}
+		[data-if-file-scheme-access-allowed] {
+			display: none;
+		}
+		body[data-file-scheme-access-allowed="true"] [data-if-file-scheme-access-allowed="true"],
+		body[data-file-scheme-access-allowed="false"] [data-if-file-scheme-access-allowed="false"] {
+			display: initial;
+		}
+	</style>
+</head>
+<body>
+	<h1>
+		<span lang="es">Ajustes</span>
+	</h1>
+	<div id="need-file-scheme-access">
+		<h2>
+			<span  lang="es">Habilitar la función</span>
+		</h2>
+		<p data-if-file-scheme-access-allowed="true">
+			<span  lang="es">✔️ Se han completado los cambios de configuración.</span>
+		</p>
+		<p data-if-file-scheme-access-allowed="false">
+			<span  lang="es">⚠️ Es posible que sea necesario modificar la configuración. No es necesario, dependiendo de la configuración de directiva de grupo de la organización.</span>
+		</p>
+		<ol>
+			<li>
+				<span  lang="es">Abre la página de extensiones de <a data-id="extension-page-link"> </a></span>
+			</li>
+			<li>
+				<span  lang="es">Habilitar "Permitir el acceso a URLs de archivos"</span>
+			</li>
+		</ol>
+		<h2>
+			<span  lang="es">Confirme la operación</span>
+		</h2>
+		<button id="test">
+			<span  lang="es">Abrir <code>file:///C:/</code></span>
+		</button>
+		<p>
+			Result: <span id="test-result">
+				<span  lang="es">No confirmado</span>
+			</span>
+		</p>
+	</div>
+	<script src="./index.js"></script>
+</body>
+</html>

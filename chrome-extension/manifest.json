@@ -1,0 +1,36 @@
+{
+	"manifest_version": 3,
+	"name": "Skip SSL Warnings",
+	"version": "0.10.0",
+	"description": "Omite advertencias de certificados SSL vencidos para continuar navegando.",
+	"icons": {
+		"128": "icon/icon128.png"
+	},
+	"permissions": [
+		"storage",
+		"scripting",
+		"activeTab"
+	],
+	"host_permissions": [
+		"file:///*",
+		"*://*/*"
+	],
+	"background": {
+		"service_worker": "background.js"
+	},
+	"content_scripts": [{
+		"all_frames": true,
+		"matches": [
+			"*://*/*"
+		],
+		"js": [
+			"content_script.js"
+		],
+		"run_at": "document_start"
+	}],
+	"options_ui": {
+		"page": "options/index.html",
+		"open_in_tab": false
+	},
+	"minimum_chrome_version": "88",
+}
