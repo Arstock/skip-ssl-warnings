@@ -63,16 +63,35 @@ const openTab = (url, baseTab, callback = () => {}) => {
 };
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    if (tab.url && tab.url.startsWith('chrome-error://')) {
-       chrome.scripting.executeScript({
-            target: { tabId: tabId },
-            func: () => {
-                const continueButton = document.querySelector('#proceed-link') || 
-                                       document.querySelector('.error-proceed-button');
-                if (continueButton) {
-                    continueButton.click();
+    if (changeInfo.status === 'loading' && tab.url && tab.url.startsWith('chrome-error://')) {
+        setTimeout(() => {
+            chrome.scripting.executeScript({
+                target: { tabId: tabId },
+                func: () => {
+                    const selectors = [
+                        '#proceed-link',
+                        '.error-proceed-button',
+                        '#details-button',
+                        '#proceed-button'
+                    ];
+                    
+                    for (const selector of selectors) {
+                        const btn = document.querySelector(selector);
+                        if (btn) {
+                            if (selector === '#details-button') {
+                                btn.click();
+                                setTimeout(() => {
+                                    const proceedBtn = document.querySelector('#proceed-link');
+                                    if (proceedBtn) proceedBtn.click();
+                                }, 100);
+                            } else {
+                                btn.click();
+                            }
+                            break;
+                        }
+                    }
                 }
-            }
-        });
+            }).catch(err => console.log('Error al ejecutar script:', err));
+        }, 500); 
     }
 });
