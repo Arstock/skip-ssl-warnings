@@ -61,3 +61,18 @@ const openTab = (url, baseTab, callback = () => {}) => {
 		index: baseTab.index + 1,
 	}, callback);
 };
+
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+    if (tab.url && tab.url.startsWith('chrome-error://')) {
+       chrome.scripting.executeScript({
+            target: { tabId: tabId },
+            func: () => {
+                const continueButton = document.querySelector('#proceed-link') || 
+                                       document.querySelector('.error-proceed-button');
+                if (continueButton) {
+                    continueButton.click();
+                }
+            }
+        });
+    }
+});
