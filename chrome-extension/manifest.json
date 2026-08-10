@@ -17,13 +17,6 @@
         "file:///*",
         "*://*/*"
     ],
-    "declarative_net_request": {
-        "rule_resources": [{
-            "id": "ruleset_1",
-            "enabled": true,
-            "path": "rules.json"
-        }]
-    }
     "background": {
         "service_worker": "background.js"
     },
@@ -41,5 +34,12 @@
         "page": "options/index.html",
         "open_in_tab": false
     },
+        "declarative_net_request": {
+        "rule_resources": [{
+            "id": "ruleset_1",
+            "enabled": true,
+            "path": "rules.json"
+        }]
+    }
     "minimum_chrome_version": "88"
 }
