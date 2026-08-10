@@ -6,9 +6,8 @@
             "type": "allow"
         },
         "condition": {
-            "urlFilter": "https://*/*",
-            "resourceTypes": ["main_frame", "sub_frame"],
-            "isUrlFilterCaseSensitive": false
+            "urlFilter": "||iweb.raizen.com.ar/*",
+            "resourceTypes": ["main_frame", "sub_frame"]
         }
     }
 ]
